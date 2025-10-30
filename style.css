@@ -73,7 +73,19 @@ main {
 }
 
 
+#cartList li {
+    margin-bottom: 5px;
+    word-wrap: break-word;
+}
 
+#cartList li:last-child button {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+    padding: 5px;
+}
 
 
 @media (max-width: 800px) {
