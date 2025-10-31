@@ -32,16 +32,16 @@ function addToCartList(index) {
     updateCartList();
 }
 function updateCartList() {
-    let cartListHTML = "";
-
+    let cartHTML = "";
+    let total = 0;
 
     for (let i = 0; i < menus.length; i++) {
         if (amounts[i] > 0) {
-
-            cartListHTML += `
+            let sum = prices[i] * amounts[i];
+            total += sum;
+            cartHTML += `
                 <li>
-                   
- 
+                    ${menus[i]} — ${prices[i].toFixed(2)} € × ${amounts[i]} = ${sum.toFixed(2)} €
                     <button aria-label="Menge verringern" onclick="amounts[${i}]=Math.max(amounts[${i}]-1,0);updateCartList()">-</button>
                     <button aria-label="Menge erhöhen" onclick="amounts[${i}]+=1;updateCartList()">+</button>
                     <button aria-label="Gericht löschen" onclick="amounts[${i}]=0;updateCartList()">🗑️</button>
@@ -50,14 +50,21 @@ function updateCartList() {
         }
     }
 
-    cartListHTML += `
+    cartHTML += `<li><strong>Gesamt: ${total.toFixed(2)} €</strong></li>`;
+
+
+    cartHTML += `
         <li>
             <button aria-label="Bestellung abschicken" onclick="alert('Bestellung abgeschickt!')">Bestellen</button>
         </li>
     `;
 
-    cartList.innerHTML = cartListHTML;
+    cartList.innerHTML = cartHTML;
 }
+
+
+
+
 
 renderMenu();
 updateCartList();
